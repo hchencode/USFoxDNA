@@ -1,22 +1,19 @@
 #!/usr/bin/env python
 """
-generate the histogram of x distrabution with input of x.dat
+generate the histogram of x distrabution.
 
-(11 November 2016)
+(23 December, 2016)
 """
+# Usage: "python histogram_x.py x.dat"
 
-
+import sys
 import numpy as np
     
 # load x file
-x = np.loadtxt("x.dat")
+xmean = sys.argv[1]
+x = np.loadtxt(xmean)
 
-# try:
-    # x = np.loadtxt("x.dat")
-# except:
-    # x = np.loadtxt("x.txt")
-
-    
+# generate the number of bins
 iqr = np.percentile(x, 75) - np.percentile(x,25)
 h   = 2*iqr/10
 n   = int((max(x)-min(x))/h)
@@ -26,7 +23,8 @@ n   = int((max(x)-min(x))/h)
 
 bins = 0.5*(bins[1:]+bins[:-1])
 
-datafile = open("x_hist_iqr.dat","w")     # Open(or create) a .txt document named by medata, as "write" style
+outfile = "hist_"+sys.argv[0]
+datafile = open("outfile","w")     # Open(or create) a .txt document named by medata, as "write" style
 
 for j in np.arange(n) :
     # Translate the data to "string" type 
