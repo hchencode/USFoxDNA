@@ -23,8 +23,8 @@ n   = int((max(x)-min(x))/h)
 
 bins = 0.5*(bins[1:]+bins[:-1])
 
-outfile = "hist_"+sys.argv[0]
-datafile = open("outfile","w")     # Open(or create) a .txt document named by medata, as "write" style
+outfile = "hist_"+sys.argv[1]
+datafile = open("%s"%outfile,"w")     # Open(or create) a .txt document named by medata, as "write" style
 
 for j in np.arange(n) :
     # Translate the data to "string" type 
